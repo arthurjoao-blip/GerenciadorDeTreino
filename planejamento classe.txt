@@ -1,0 +1,15 @@
+﻿Classe treino:
+lista<Treino> lista de exercicio = []
+int quantidade de exercicio = variavel
+string nome= nome input
+Modalidade -->musculação, aerobico...
+ritmo -->
+subclasse Exercicio:
+NomeExercicio= variavel 
+quantidade de exercicio aumenta em 1 
+int intervalo entre treino = input
+int repetição = input 
+int series = input 
+GrupoMuscular -->
+carga = varios, podendo altear durante os treinos
+lista de exercicio.Add(exercicio)

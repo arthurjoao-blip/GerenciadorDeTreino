@@ -1,0 +1,23 @@
+﻿interface -->classe mãe de toda interface 
+--->Classe mãe -->Mostrar treinos
+-Inicinado o executar:
+--> Todo executar dentro de menu tem que ter um console clear e um Nomear fução
+- Ver treinos
+--> mostrar todos os treinos que tem e poder escolher um para ver mais detalhes
+- Começar um treino
+--> Mostra os treinos e escolhe um para comeaçar 
+-Editar um treino
+-->
+-excluir um treino
+-->
+
+Não são da subclasse de mostrar treinos 
+-criar um treino
+--> vai diretor prencher os dados quer precisa para class treino
+-Historioco de treino
+--> mostra os treinos feitos nesta conta
+
+Executavel
+carregamento de dados e salvar em forma de listar para carregar
+dicionario de executamento
+
