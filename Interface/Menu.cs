@@ -47,14 +47,17 @@ internal class Menu
     public Treino EscolherTreino()
     {
         var c = new Central();
-        return c.ToList()[EscolhaDeInstanciaTreino(c.ToList())];
+        return c.ToList()[EscolhaDeInstanciaTreino()];
     }
-    public static int EscolhaDeInstanciaTreino(List<Treino> lista)
+    public static int EscolhaDeInstanciaTreino()
     {
+        var c = new Central();
         Console.Clear();
-        ExibirTreinos(lista);
-        int escolha = Escolha(1, lista.Count);
+        ExibirTreinos(c.ToList());
+        int escolha = Escolha(1, c.ToList().Count);
+        Console.Clear();
         return escolha - 1;
+        
     }
     public static void ExibirTreinos(List<Treino> lista)
     {

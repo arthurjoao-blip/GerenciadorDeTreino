@@ -10,13 +10,17 @@ internal class MenuExibir : Menu
         Console.Clear();
         int i = 1;
         var c = new Central();
+        Opcao();
+        int escolha = Escolha(1, 2);
+        if (escolha == 2)
+        {
+            return;
+        }
         foreach (var item in c)
         {
             Console.WriteLine($"{i}.{item.Nome}");
             i++;
         }
-        Opcao();
-        int escolha = Escolha(1,2);
         var instancia = EscolherTreino();
         Console.Clear();
         instancia.ExibirTreino(); 

@@ -49,5 +49,9 @@ internal class Central : IEnumerable<Treino>
         }
     }
     
+    public static void Remover(Treino t )
+    {
+        listaDeTreinos.Remove(t);
+    }
 }
 

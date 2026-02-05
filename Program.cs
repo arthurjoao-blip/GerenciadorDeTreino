@@ -14,7 +14,7 @@ internal class Program
             Treino.CarregarTreinoSalvos(streamTreino);
         using (var fluxoDeArquivo = new FileStream("Exercicio.txt", FileMode.Open))
         using (var streamExercicio = new StreamReader(fluxoDeArquivo))
-            Treino.CarregarTreinoSalvos(streamExercicio);
+            Treino.CarregarExercicioSalvos(streamExercicio);
 
 
         Dictionary<int, Menu> OpcaoDeMenu=new Dictionary<int, Menu>();
@@ -26,6 +26,7 @@ internal class Program
         OpcaoDeMenu.Add(6, new MenuExcluir());
         while (true)
         {
+            Console.Clear();
             Menu.Iniciando();
             int escolha = Escolha();
             if (escolha == 0) { break; }

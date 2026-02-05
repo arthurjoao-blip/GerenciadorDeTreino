@@ -77,16 +77,16 @@ internal partial class Treino : IEnumerable<Exercicios>
             }
         }
     }
-    public static void CarregarExerciciosSalvos(List<Treino> Treinos, StreamReader stream)
+    public static void CarregarExercicioSalvos( StreamReader stream)
     {
         while (!stream.EndOfStream)
         {
             //musculação;leve;12;4;Supino reto ;100;musculação;0
             var linha = stream.ReadLine();
-            var prop = linha.Split(';');
+            var prop = linha!.Split(';');
             var c = new Central().ToList();
-            c[prop.Length-1].Add(new Exercicios(prop[0], prop[1], int.Parse(prop[2]), 
-                int.Parse(prop[3]), c[prop.Length - 1],
+            c[int.Parse(prop[7])].Add(new Exercicios(prop[0], prop[1], int.Parse(prop[2]), 
+                int.Parse(prop[3]), c[int.Parse(prop[7])],
                 prop[4], int.Parse(prop[5]), prop[6]));
         }
     }
