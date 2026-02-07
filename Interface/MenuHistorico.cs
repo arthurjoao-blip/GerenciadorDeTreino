@@ -8,6 +8,7 @@ internal class MenuHistorico : Menu
 {
     public override void Executar()
     {
+        Historico.CarregarTreino();
         int faixa=Treino.RetonarInteiro("Digite A quantidade de treinos");
         Historico.ExbirHistorico(faixa);
         Console.WriteLine("Aperte enter para voltar ao incio");

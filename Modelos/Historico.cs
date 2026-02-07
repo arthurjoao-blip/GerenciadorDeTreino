@@ -73,32 +73,54 @@ internal class Historico : IEnumerable<PlayerDeTreino>
     internal static void CarregarTreino()
     {
         string Acesso = "Historico.txt";
-        using (var fluxoDeArquivo = new FileStream(Acesso, FileMode.OpenOrCreate))
-        using (var stream = new StreamReader(fluxoDeArquivo))
+        if (!File.Exists(Acesso)) return;
+
+        var c = new Central();
+        var listaCentral = c.ToList();
+
+        using (var stream = new StreamReader(new FileStream(Acesso, FileMode.Open)))
         {
-            while (!stream.EndOfStream) 
+            PlayerDeTreino playerAtual = null;
+            int ultimoIndiceTreinoNoArquivo = -1;
+
+            while (!stream.EndOfStream)
             {
                 var linhaTexto = stream.ReadLine();
+                if (string.IsNullOrWhiteSpace(linhaTexto)) continue;
 
-                if (!string.IsNullOrWhiteSpace(linhaTexto))
+                var colunas = linhaTexto.Split(';');
+
+                // colunas[3] é o índice do Treino na Central
+                // colunas[4] é o índice do Exercício dentro do Treino
+                int idTreino = int.Parse(colunas[3]);
+                int idExercicio = int.Parse(colunas[4]);
+                int seriesFeitas = int.Parse(colunas[1]);
+
+                // Se mudou o ID do treino, significa que começamos um novo bloco de exercícios de outro treino
+                if (idTreino != ultimoIndiceTreinoNoArquivo)
                 {
-                    var colunas = linhaTexto.Split(';');
-
-                    var c = new Central();
-                    if (int.TryParse(colunas[3], out int indice))
+                    var treinoBase = listaCentral.ElementAtOrDefault(idTreino);
+                    if (treinoBase != null)
                     {
-                        var entidade = c.ElementAtOrDefault(indice);
-                        if (entidade != null)
-                        {
-                            var player = new PlayerDeTreino(entidade);
-                            HistoricoDeTreino.Push(player);
-                            player.player.Add(entidade.ToList()[int.Parse(colunas[4])], int.Parse(colunas[1]));
-                        }
+                        playerAtual = new PlayerDeTreino(treinoBase);
+                        HistoricoDeTreino.Push(playerAtual);
+                        ultimoIndiceTreinoNoArquivo = idTreino;
+                    }
+                }
+
+                // Adiciona o exercício ao player que acabamos de criar/recuperar
+                if (playerAtual != null)
+                {
+                    // Pega o exercício da lista do TreinoAtual
+                    var exercicio = playerAtual.TreinoAtual.ToList().ElementAtOrDefault(idExercicio);
+                    if (exercicio != null)
+                    {
+                        // Se o exercício já existir (por erro no arquivo), ele sobrescreve, senão adiciona
+                        playerAtual.player[exercicio] = seriesFeitas;
                     }
                 }
             }
         }
-
     }
 
 }
