@@ -11,9 +11,9 @@ internal partial class Treino : IEnumerable<Exercicios>
 {
     public List<Exercicios> listaDeExercicio = [] ;
     public int quantidadeDeExercicio;
-    public string Nome { get; }
-    public string Modalidade { get; }
-    public string ritmo { get; }
+    public string Nome { get; set; }
+    public string Modalidade { get; set; }
+    public string ritmo { get; set; }
 
     public Treino(string Nome, string Modalidade, string ritmo, int tipo)
     {
@@ -93,5 +93,9 @@ internal partial class Treino : IEnumerable<Exercicios>
     public void Add(Exercicios ex)
     {
         this.listaDeExercicio.Add(ex);
+    }
+    public void Remover(Exercicios ex)
+    {
+        this.listaDeExercicio.Remove(ex);
     }
 }

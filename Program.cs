@@ -9,6 +9,7 @@ internal class Program
     public static List<Treino> ListaDeTreinos = new List<Treino>();
     static void Main(string[] args)
     {
+        Historico.CarregarTreino();
         using (var fluxoDeArquivo = new FileStream("Treinos.txt", FileMode.Open))
         using (var streamTreino = new StreamReader(fluxoDeArquivo))
             Treino.CarregarTreinoSalvos(streamTreino);

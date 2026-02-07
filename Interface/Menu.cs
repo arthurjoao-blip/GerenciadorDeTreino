@@ -44,7 +44,7 @@ internal class Menu
         Console.WriteLine("");
     }
 
-    public Treino EscolherTreino()
+    public   Treino EscolherTreino()
     {
         var c = new Central();
         return c.ToList()[EscolhaDeInstanciaTreino()];

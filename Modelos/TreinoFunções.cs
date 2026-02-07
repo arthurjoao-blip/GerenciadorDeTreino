@@ -90,4 +90,10 @@ internal  partial class Treino
         return c.ToList().IndexOf(this);
 
     }
+    public void EditarPropTreino(string prop, string newValueProp)
+    {
+        var propertyInfo = typeof(Treino).GetProperty(prop);
+        if (prop == null) { return; }
+        propertyInfo!.SetValue(this, newValueProp);
+    }
 }
